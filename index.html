@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONG Esperança</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="cabecalho">
+  <div class="container">
+    <a class="logo" href="#">ONG Esperança</a>
+
+    <button class="menu-btn" aria-label="Abrir menu">☰</button>
+
+    <nav class="menu">
+      <a href="#inicio">Início</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#ajude">Ajude</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <section class="hero container">
+    <div>
+      <span class="badge verde">Ação social</span>
+      <h1>Juntos podemos ajudar</h1>
+      <p>Conheça nossos projetos e veja como você pode contribuir.</p>
+      <button class="botao" id="abrirModal">Quero ajudar</button>
+    </div>
+  </section>
+
+  <section id="projetos" class="container secao">
+    <h2>Nossos projetos</h2>
+
+    <div class="projetos">
+      <article class="card">
+        <span class="badge verde">Ativo</span>
+        <h3>Doação de alimentos</h3>
+        <p>Arrecadação de alimentos para famílias da comunidade.</p>
+        <button class="botao projeto">Apoiar</button>
+      </article>
+
+      <article class="card">
+        <span class="badge amarelo">Em andamento</span>
+        <h3>Campanha do agasalho</h3>
+        <p>Arrecadação de roupas e cobertores para o inverno.</p>
+        <button class="botao projeto">Apoiar</button>
+      </article>
+
+      <article class="card">
+        <span class="badge azul">Voluntariado</span>
+        <h3>Ajude como voluntário</h3>
+        <p>Participe das atividades e contribua com seu tempo.</p>
+        <button class="botao projeto">Participar</button>
+      </article>
+    </div>
+  </section>
+
+  <section id="ajude" class="container secao">
+    <div class="alerta sucesso" id="alertaSucesso">
+      ✓ Mensagem enviada com sucesso!
+    </div>
+
+    <div class="formulario">
+      <h2>Entre em contato</h2>
+      <form id="form">
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" required placeholder="Seu nome">
+
+        <label for="email">E-mail</label>
+        <input id="email" type="email" required placeholder="seu@email.com">
+
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" required placeholder="Como você gostaria de ajudar?"></textarea>
+
+        <button class="botao" type="submit">Enviar</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<div class="modal" id="modal">
+  <div class="modal-caixa">
+    <button class="fechar" id="fecharModal">×</button>
+    <h2>Quero ajudar</h2>
+    <p>Obrigado pelo interesse em apoiar a ONG Esperança.</p>
+    <button class="botao" id="confirmar">Confirmar</button>
+  </div>
+</div>
+
+<div class="toast" id="toast">✓ Obrigado por participar!</div>
+
+<footer class="rodape">
+  <p>ONG Esperança - Projeto acadêmico</p>
+</footer>
+
+<script>
+const menuBtn = document.querySelector('.menu-btn');
+const menu = document.querySelector('.menu');
+
+menuBtn.addEventListener('click', () => {
+  menu.classList.toggle('ativo');
+});
+
+const modal = document.querySelector('#modal');
+
+document.querySelector('#abrirModal').addEventListener('click', () => {
+  modal.classList.add('ativo');
+});
+
+document.querySelectorAll('.projeto').forEach((botao) => {
+  botao.addEventListener('click', () => {
+    modal.classList.add('ativo');
+  });
+});
+
+document.querySelector('#fecharModal').addEventListener('click', () => {
+  modal.classList.remove('ativo');
+});
+
+document.querySelector('#confirmar').addEventListener('click', () => {
+  modal.classList.remove('ativo');
+  document.querySelector('#toast').classList.add('ativo');
+
+  setTimeout(() => {
+    document.querySelector('#toast').classList.remove('ativo');
+  }, 3000);
+});
+
+document.querySelector('#form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  document.querySelector('#alertaSucesso').classList.add('ativo');
+  event.target.reset();
+});
+</script>
+
+</body>
+</html>
